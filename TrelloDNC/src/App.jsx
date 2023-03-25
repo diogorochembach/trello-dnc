@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import logodnc from "../public/logo-dnc.png";
+import "./app.scss";
+import { Column } from "./components/column";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [columns, setColumns] = useState([
+    { id: 1, title: "Planejamento" },
+    { id: 2, title: "A fazer" },
+    { id: 3, title: "Fazendo" },
+    { id: 4, title: "Feito" },
+  ]);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <section>
+      <header>
+        <img src={logodnc} />
+        <h1>Lista de Tarefas</h1>
+      </header>
+      <div className="listContainer">
+        {columns.map((column) => (
+          <Column title={column.title} key={column.id} />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    </section>
+  );
 }
 
-export default App
+export default App;
